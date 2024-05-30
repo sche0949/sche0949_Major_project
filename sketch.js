@@ -1,8 +1,9 @@
-// Variables for music and button
+// lets make the variables for music and button
 let pianoMusic;
 let isMusicPlaying = false;
 let playButton;
-let apples = []; // Define the apples array
+//lets make the variable for fft
+let fft;
 
 function preload() {
   // Load piano music
@@ -14,20 +15,24 @@ function setup() {
   createCanvas(464, 649);
   drawCanvas();
   
-  // Create play/pause button
+  // lets make the play/pause button
   playButton = createButton('Play');
   playButton.position(208, 580);
   playButton.mousePressed(toggleMusic);
+
+  // lets initialize the FFT object
+  fft = new p5.FFT();
 }
 
+  //lets use Toggle music play/pause
 function toggleMusic() {
-  // Toggle music play/pause
   if (isMusicPlaying) {
     pianoMusic.pause();
     playButton.html('Play');
   } else {
     pianoMusic.loop();
     playButton.html('Pause');
+    fft.setInput(pianoMusic); //Set FFT input when music starts playing
   }
   isMusicPlaying = !isMusicPlaying;
 }
@@ -41,6 +46,11 @@ function windowResized() {
 function drawCanvas() {
   let canvasWidth = width;
   let canvasHeight = height;
+
+  // Ensure FFT is initialized and music is playing before using it
+  if (fft && isMusicPlaying && pianoMusic.isLoaded()) {
+    // Get the spectrum data
+    let spectrum = fft.analyze();}
 
   // Set the background color
   background(146, 157, 155); 
