@@ -61,11 +61,6 @@ function drawCanvas() {
     midFreqAmp = fft.getEnergy(100, 2000); 
     highFreqAmp = fft.getEnergy(2000, 20000); 
 
-  // Set the background color
-  background(146, 157, 155); 
-  noStroke();
-  //Draw inner layer
-  drawOilPainting(canvasWidth, canvasHeight);  
 
   // Draw roots
   drawRoots(canvasWidth, canvasHeight); 
