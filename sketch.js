@@ -1,7 +1,35 @@
+// Variables for music and button
+let pianoMusic;
+let isMusicPlaying = false;
+let playButton;
+let apples = []; // Define the apples array
+
+function preload() {
+  // Load piano music
+  pianoMusic = loadSound('assets/piano_loop.mp3');
+}
+
 function setup() {
   // Set the canvas size
   createCanvas(464, 649);
   drawCanvas();
+  
+  // Create play/pause button
+  playButton = createButton('Play');
+  playButton.position(208, 580);
+  playButton.mousePressed(toggleMusic);
+}
+
+function toggleMusic() {
+  // Toggle music play/pause
+  if (isMusicPlaying) {
+    pianoMusic.pause();
+    playButton.html('Play');
+  } else {
+    pianoMusic.loop();
+    playButton.html('Pause');
+  }
+  isMusicPlaying = !isMusicPlaying;
 }
 
 function windowResized() {
