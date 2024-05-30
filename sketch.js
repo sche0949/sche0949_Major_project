@@ -4,6 +4,10 @@ let isMusicPlaying = false;
 let playButton;
 //lets make the variable for fft
 let fft;
+//lets make the variable for low, mid and high frequency amplitude
+let lowFreqAmp = 0; 
+let midFreqAmp = 0; 
+let highFreqAmp = 0; 
 
 function preload() {
   // Load piano music
@@ -51,6 +55,11 @@ function drawCanvas() {
   if (fft && isMusicPlaying && pianoMusic.isLoaded()) {
     // Get the spectrum data
     let spectrum = fft.analyze();}
+
+    // lets use the frequency range to Calculate the average amplitude
+    lowFreqAmp = fft.getEnergy(10, 100); 
+    midFreqAmp = fft.getEnergy(100, 2000); 
+    highFreqAmp = fft.getEnergy(2000, 20000); 
 
   // Set the background color
   background(146, 157, 155); 
