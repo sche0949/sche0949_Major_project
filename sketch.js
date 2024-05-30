@@ -3,11 +3,12 @@ let pianoMusic;
 let isMusicPlaying = false;
 let playButton;
 //lets make the variable for fft
-let fft;
+let fft; 
 //lets make the variable for low, mid and high frequency amplitude
 let lowFreqAmp = 0; 
 let midFreqAmp = 0; 
 let highFreqAmp = 0; 
+let oilPaintingColor; 
 
 function preload() {
   // Load piano music
@@ -28,8 +29,8 @@ function setup() {
   fft = new p5.FFT();
 }
 
-  //lets use Toggle music play/pause
 function toggleMusic() {
+  //lets use Toggle music play/pause
   if (isMusicPlaying) {
     pianoMusic.pause();
     playButton.html('Play');
@@ -47,6 +48,13 @@ function windowResized() {
   drawCanvas();
 }
 
+function draw() {
+  // Only draw canvas when music is playing
+  if (isMusicPlaying) {
+    drawCanvas();
+  }
+}
+
 function drawCanvas() {
   let canvasWidth = width;
   let canvasHeight = height;
@@ -54,13 +62,23 @@ function drawCanvas() {
   // Ensure FFT is initialized and music is playing before using it
   if (fft && isMusicPlaying && pianoMusic.isLoaded()) {
     // Get the spectrum data
-    let spectrum = fft.analyze();}
+    let spectrum = fft.analyze();
 
     // lets use the frequency range to Calculate the average amplitude
     lowFreqAmp = fft.getEnergy(10, 100); 
     midFreqAmp = fft.getEnergy(100, 2000); 
     highFreqAmp = fft.getEnergy(2000, 20000); 
 
+    // lets use the amplitude to change the oilpainting color
+    oilPaintingColor = color(lowFreqAmp, midFreqAmp, highFreqAmp);
+
+    //  lets draw canvas with oil painting effect based on music
+    drawOilPainting(canvasWidth, canvasHeight, oilPaintingColor);
+  } else {
+    // If music is not playing, draw canvas change to default settings
+    background(146, 157, 155); // Set the color for background 
+    drawOilPainting(canvasWidth, canvasHeight, color(83, 96, 110)); // Set the color for oil painting
+  }
 
   // Draw roots
   drawRoots(canvasWidth, canvasHeight); 
@@ -68,7 +86,7 @@ function drawCanvas() {
   drawBottomRectangle(canvasWidth, canvasHeight); 
   // Draw branches and apples
   drawBranchesAndApples(canvasWidth, canvasHeight); 
-  }
+}
 
   function drawRoots(canvasWidth, canvasHeight) {
   // Calculate and draw the roots rectangle
@@ -78,11 +96,12 @@ function drawCanvas() {
   let rootHeight = 40 / 649 * canvasHeight;
   fill(95, 142, 105);
   rect(rootX, rootY, rootWidth, rootHeight);
-}
+  }
 
-function drawOilPainting(w, h) {
-    // Draw the rectangle for the oil painting
-  fill(83, 96, 110);
+
+function drawOilPainting(w, h, fillColor) {
+  // Draw the rectangle for the oil painting
+  fill(fillColor);
   rect(18, 18, w - 36, h - 36);
 
   // Draw multiple bezier curves to create the oil painting effect
@@ -107,16 +126,18 @@ function drawOilPainting(w, h) {
   // Draw multiple small ellipses to create the texture
   fill(46, 58, 73);
   noStroke();
-  let xDots = (w-40)/5.5
-  let yDots =  (h-40)/5.5
- for (let i = 0; i < xDots; i++) {
-   for (let j = 0; j < yDots; j++) {
-      ellipse(20 + i * 5.5, 20 + j * 5.5, 2, 2);
+  let xDots = (w - 40) / 5.5;
+  let yDots = (h - 40) / 5.5;
+  let scaleFactor = map(midFreqAmp, 0, 255, 1, 3); // Scale factor based on mid frequency amplitude
+  for (let i = 0; i < xDots; i++) {
+    for (let j = 0; j < yDots; j++) {
+      let size = random(1, 2) * scaleFactor; // Vary ellipse size based on the scale factor
+      ellipse(20 + i * 5.5, 20 + j * 5.5, size, size);
     }
   }
 }
 
-  // Draw the bottom rectangle
+// Draw the bottom rectangle
 function drawBottomRectangle(canvasWidth, canvasHeight) {
   let rectX = canvasWidth * 120 / 464;
   let rectY = canvasHeight * 485 / 649;
