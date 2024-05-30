@@ -69,10 +69,10 @@ function drawCanvas() {
     midFreqAmp = fft.getEnergy(100, 2000); 
     highFreqAmp = fft.getEnergy(2000, 20000); 
 
-    // lets use the amplitude to change the oilpainting color
+    // lets use the amplitude to change the oilpainting colour
     oilPaintingColor = color(lowFreqAmp, midFreqAmp, highFreqAmp);
 
-    //  lets draw canvas with oil painting effect based on music
+    //  lets draw canvas with oil painting colour based on music
     drawOilPainting(canvasWidth, canvasHeight, oilPaintingColor);
   } else {
     // If music is not playing, draw canvas change to default settings
@@ -80,7 +80,7 @@ function drawCanvas() {
     drawOilPainting(canvasWidth, canvasHeight, color(83, 96, 110)); // Set the color for oil painting
   }
 
-  // Draw roots
+  // Draw the root
   drawRoots(canvasWidth, canvasHeight); 
   // Draw bottom rectangle
   drawBottomRectangle(canvasWidth, canvasHeight); 
@@ -128,7 +128,8 @@ function drawOilPainting(w, h, fillColor) {
   noStroke();
   let xDots = (w - 40) / 5.5;
   let yDots = (h - 40) / 5.5;
-  let scaleFactor = map(midFreqAmp, 0, 255, 1, 3); // Scale factor based on mid frequency amplitude
+  //lets make the scale factor can change with mid frequency amplitude
+  let scaleFactor = map(midFreqAmp, 0, 255, 1, 3); 
   for (let i = 0; i < xDots; i++) {
     for (let j = 0; j < yDots; j++) {
       let size = random(1, 2) * scaleFactor; // Vary ellipse size based on the scale factor
