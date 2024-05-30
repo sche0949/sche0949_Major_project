@@ -42,11 +42,14 @@ function toggleMusic() {
   isMusicPlaying = !isMusicPlaying;
 }
 
-function windowResized() {
-  // Resize the canvas to the window's width and height
-  resizeCanvas(windowWidth, windowHeight);
-  drawCanvas();
-}
+  function windowResized() {
+    // Resize the canvas to the window's width and height
+    resizeCanvas(windowWidth, windowHeight);
+    // Resize the position of the playButton to the window's width and height
+    playButton.position(windowWidth / 2 - playButton.width / 2, windowHeight - 70);
+    drawCanvas();
+  }
+
 
 function draw() {
   // Only draw canvas when music is playing
