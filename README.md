@@ -7,6 +7,15 @@ The work utilizes **Audio** to drive animation of ''Apple Tree''.
 
 The overall design follows the concept of the group project and is modified. The background color and the size of the apple can change with the calm and smooth piano music, showing that the apple is growing continuously in the changing seasons (represented by the background color). 
 
+**Inspire Image**
+![Inspire image1](readmeimages/Images/IMG_2745.PNG)
+![Inspire image2](readmeimages/IMG_2746.PNG)
+
+
+The work utilizes **Audio** to drive animation of ''Apple Tree''. 
+
+The overall design follows the concept of the group project and is modified. The background color and the size of the apple can change with the calm and smooth piano music, showing that the apple is growing continuously in the changing seasons (represented by the background color). 
+
 ## Instructions on how to interact
 
 The interactive method of this work is that the music starts playing after clicking the play button, and the background color and the size of the apple start to change with the music. After clicking pause, it will stop at the previous screen and will not refresh. If you want to start again, you can refresh the page.
@@ -57,9 +66,9 @@ When the music starts playing, set the input of the FFT to the currently playing
 
 - **fft:** 
 By analysing the audio signal,  the background color and the size of the apple change with the music.
-- **lowFreqAmp:** 
-  **midFreqAmp:** 
-  **highFreqAmp:** 
+- **lowFreqAmp,** 
+  **midFreqAmp,** 
+  **highFreqAmp** 
 It is used to store the amplitude of the low, mid and high frequency band, different frequency bands will have different amplitudes, indicating the volume or intensity of the frequency band. This changes the background color and size.
 
 
