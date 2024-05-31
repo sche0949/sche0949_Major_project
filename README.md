@@ -10,6 +10,7 @@ The overall design follows the concept of the group project and is modified. The
 ## Inspire Image
 ![Inspire image1](readmeImages/IMG_2744.jpg)
 ![Inspire image2](readmeImages/IMG_2745.jpg)
+I chose images of trees and the changing seasons as the main source of inspiration. Since our group chose an apple tree, I wanted to make the tree and the background change with the peaceful piano music to show the season change, which creates a feeling of the passage of time.
 
 ## Instructions on how to interact
 
@@ -18,7 +19,7 @@ The interactive method of this work is that the music starts playing after click
 ## Animation and difference
 
 The difference between my work and the team member's mainly lies in the continuous animation expression（The animations of other members are performed in steps or end after a short duration）.
-- For example, the background color and the size of the apple change continuously
+- The background color and the size of the apple change continuously
 - In addition, the animation can follow the window resize
 
 ## Technical interpretation
