@@ -8,8 +8,8 @@ The work utilizes **Audio** to drive animation of ''Apple Tree''.
 The overall design follows the concept of the group project and is modified. The background color and the size of the apple can change with the calm and smooth piano music, showing that the apple is growing continuously in the changing seasons (represented by the background color). 
 
 **Inspire Image**
-![Inspire image1](readmeimages/Images/IMG_2745.jpg)
-![Inspire image2](readmeimages/IMG_2746.jpg)
+![Inspire image1](readmeImages/Images/IMG_2745.jpg)
+![Inspire image2](readmeImages/IMG_2746.jpg)
 
 
 The work utilizes **Audio** to drive animation of ''Apple Tree''. 
